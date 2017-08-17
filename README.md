@@ -324,4 +324,4 @@ part of a good security hygiene.
 ## Release
 
 - where to get : https://github.com/gelim/nmap-erpscan
-- how to use : see (USAGE.md)[USAGE.md]
+- how to use : see [USAGE.md](USAGE.md)
