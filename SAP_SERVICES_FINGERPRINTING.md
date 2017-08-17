@@ -323,5 +323,5 @@ part of a good security hygiene.
 
 ## Release
 
-- where to get : github/erpscan.com ?
-- how to use : TODO
+- where to get : https://github.com/gelim/nmap-erpscan
+- how to use : see (USAGE.md)[USAGE.md]
