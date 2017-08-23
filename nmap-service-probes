@@ -194,7 +194,6 @@ match saptrex m|\xc7\xff\x17| p/SAP TREX Cruise server/
 
 
 ##############################NEXT PROBE##############################
-# FIXEM: not checked against real services (none found on local net...)
 Probe TCP SAPLOGVIEWER q|JRMI\x00\x02K|
 ports 1099, 5465, 26000
 rarity 9
@@ -210,7 +209,6 @@ rarity 9
 match saphanahdb m|\x04\x01\x00\x00\x00| p/SAP HANA HDB/
 
 ##############################NEXT PROBE##############################
-# FIXME: verify on real service
 Probe TCP SAPMOBILE q|GET / HTTP/1.0\r\n\r\n|
 ports 5001
 rarity 9
