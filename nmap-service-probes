@@ -1,3 +1,7 @@
+# Authors: Mathieu Geli     <m.geli@erpscan.com>
+#          Michael Medvedev <m.medvedev@erpscan.com>
+#          Martin Gallo     <m.gallo@coresecurity.com>
+
 Probe TCP NULL q||
 totalwaitms 6000
 tcpwrappedms 3000
