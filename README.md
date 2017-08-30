@@ -1,8 +1,9 @@
 SAP Services detection via nmap probes
 --------------------------------------
 
+- [SAP Services detection via nmap probes](#sap-services-detection-via-nmap-probes)
 - [How nmap can help us](#how-nmap-can-help-us)
-- [SAP support in official nmap](#sap-support-in-official-nmap)
+- [SAP existing support in nmap](#sap-existing-support-in-nmap)
   * [Version and service detection](#version-and-service-detection)
 - [How to generate and test probes](#how-to-generate-and-test-probes)
 - [How to handle scan port range](#how-to-handle-scan-port-range)
@@ -11,8 +12,9 @@ SAP Services detection via nmap probes
 - [How a scan looks like with custom SAP probes](#how-a-scan-looks-like-with-custom-sap-probes)
 - [Issues encountered: SSL](#issues-encountered-ssl)
 - [What can be improved](#what-can-be-improved)
+- [What to do next with that information?](#what-to-do-next-with-that-information)
 - [Conclusion](#conclusion)
-- [Release](#release)
+- [Authors](#authors)
 
 This article aims at showing how to improve the capability of the nmap
 network scanner to detect SAP services. This is by no mean a complete
@@ -36,14 +38,14 @@ Nmap is an open source network port scanner that can do many things
 and especially service detection via fingerprints. We will explain how
 one could implement a SAP-aware port scanner with this tool.
 
-## SAP support in official nmap
+## SAP existing support in nmap
 
 First, if you look closely at the official nmap release you will
 notice that there are some traces of SAP support. It is actually very
 sparse and can be confirmed by scanning a real SAP server:
 
 ```
-Nmap scan report for 192.168.30.29
+Nmap scan report for 172.16.30.29
 Host is up (0.00018s latency).
 Not shown: 65508 closed ports
 PORT      STATE SERVICE         VERSION
@@ -83,6 +85,14 @@ PORT      STATE SERVICE         VERSION
 The columns SERVICE and VERSION shows us plenty of unknown or
 improperly named fields. This situation can be improved if we analyze
 each unknown port/protocol.
+
+If you dig a bit more you'll find that Core Security researcher Martin
+Gallo wrote much more improved support for SAP proprietary protocol
+(available at
+[corelabs-nmap-service-probes.txt](https://www.coresecurity.com/system/files/publications/2016/05/corelabs-nmap-service-probes.txt))
+that does smarter stuff like extracting technical server information
+from answers. That is a very good starting point and as we included
+some of these probes we enlarged the support a bit more.
 
 ### Version and service detection
 
@@ -200,9 +210,9 @@ used in a `Probe` rule, and several `match` on a single port.
 
 ### Port generation tool
 
-The following python tool `sap_ports.py` takes care of port generation
-and prints out a comma-separated list of ports that can be used as the
-nmap `-p` parameter as following:
+The following python tool [sap_ports.py](sap_ports.py) takes care of
+port generation and prints out a comma-separated list of ports that
+can be used as the nmap `-p` parameter as following:
 
 ```
 $ nmap -p $(sap_ports.py) $TARGETS
@@ -319,6 +329,16 @@ This blog post is a way to remind that SAP servers have a huge
 exposition surface and that enforcing a strict networking policy
 including them is part of a good security hygiene.
 
-## Release
+This article and the associated Nmap files are available at
+[github.com](https://github.com/gelim/nmap-erpscan). A web-only
+version is available at
+https://erpscan.com/press-center/blog/sap-services-detection-via-nmap-probes/
 
-https://github.com/gelim/nmap-erpscan
+
+## Authors
+ 
+ Name | Mail  | Involvment
+------|-------|------------
+Mathieu Geli | <m.geli@erpscan.com>  | Main author/maintainer of those files
+Michael Medvedev | <m.medvedev@erpscan.com> | Second author
+Martin Gallo | <m.gallo@coresecurity.com>  | Initial support on Diag/RFC/MS/Enqueue protocols
