@@ -130,7 +130,7 @@ Full documentation of this file format can be found at
 
 ## How to generate and test probes
 
-So now, we need a way to know which packets needto be sent and what
+So now, we need a way to know which packets need to be sent and what
 specific piece of information inside an answer can allow us to
 identify with a good assurance what protocol is being used and from
 that determine what is the service using this protocol. In order to
@@ -171,7 +171,7 @@ for version, and 'h' for hostname).
 ## How to handle scan port range
 
 Usually with nmap, if we do not specify -p option it will scan the
-1000 most used port (from internet statistics). Unfortunately, many
+1000 most used port (from Internet statistics). Unfortunately, many
 SAP ports will be missed by doing so. Therefore, we need to scan all
 65535 ports at a big scan time cost or we look a bit closer at how to
 generate these SAP ports. For efficiency, we decide to choose the
@@ -219,7 +219,7 @@ $ nmap -p $(sap_ports.py) $TARGETS
 ```
 
 The main idea of `sap_ports.py` is to use a statically defined
-dictionary with information gathered from SAP online documentation to
+dictionary with information gathered from SAP on-line documentation to
 generate the list of ports with possibility to generate a subset of
 the ports depending on several criteria.
 
