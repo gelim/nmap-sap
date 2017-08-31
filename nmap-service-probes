@@ -278,15 +278,16 @@ rarity 9
 match sapboweb m|200 OK| p/SAP Business Object Web Frontend/ v/3.x/
 
 ##############################NEXT PROBE##############################
-Probe TCP SAPASE q|\x00\x02\x00\x02\x00\x00\x00\x00|
-ports 4901-4999
-rarity 9
-match sapase m|Login failed| p/SAP ASE Database/
+#Probe TCP SAPASE q|\x00\x02\x00\x02\x00\x00\x00\x00|
+#ports 4901-4999
+#rarity 9
+#match sapase m|Login failed| p/SAP ASE Database/
 
 ##############################NEXT PROBE##############################
 Probe TCP RPCCheck q|\x80\0\0\x28\x72\xFE\x1D\x13\0\0\0\0\0\0\0\x02\0\x01\x86\xA0\0\x01\x97\x7C\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0|
-match sybase-adaptive m|^\0\x01\0\x08\0\0\x00\0$| p/Sybase Adaptive Server/ o/Windows/ cpe:/a:sybase:adaptive_server/ cpe:/o:microsoft:windows/a
-match sybase-backup m|^\0\x01\0\x08\0\0\x01\0$| p/Sybase Backup Server/ o/Windows/ cpe:/a:sybase:backup_server/ cpe:/o:microsoft:windows/a
+ports 4901-4999
+match ase-adaptive m|^\0\x01\0\x08\0\0\x00\0$| p/SAP ASE DB/ o/Windows/ cpe:/a:sybase:adaptive_server/ cpe:/o:microsoft:windows/a
+match ase-backup m|^\0\x01\0\x08\0\0\x01\0$| p/SAP ASE DB backup/ o/Windows/ cpe:/a:sybase:backup_server/ cpe:/o:microsoft:windows/a
 
 ##############################NEXT PROBE##############################
 ####        BEWARE THIS PROBE WILL WORK WITH NMAP PATCHED !!      ####
@@ -344,7 +345,7 @@ match sapsmtp m|(\S+) SAP (\S+) E?SMTP service ready| p/SAP SMTP Server/ h/$1/ v
 Probe TCP P4IIOP q|GIOP\x01\x00\x00\x00\x00\x00\x00\xf8\x00\x00\x00\x03\x00\x00\x00\x11\x00\x00\x00\x02\x00\x02\x00\x00NEO\x00\x00\x00\x00\x02\x00\x14\x00\x00\x00\x00\x00\x06\x00\x00\x00\xa6\x00\x00\x00\x00\x00\x00\x00(IDL:omg.org/SendingContext/CodeBase:0.0\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00j\x00\x01\x02\x00\x00\x00\x00\n127.0.1.1\x00\x9bF\x00\x00\x00\x19\xaf\xab\xcb\x00\x00\x00\x00\x02%a2+\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00\x00\x14\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00 \x00\x00\x00\x00\x00\x01\x00\x01\x00\x00\x00\x02\x05\x01\x00\x01\x00\x01\x00 \x00\x01\x01\t\x00\x00\x00\x01\x00\x01\x01\x00\x00\x00\x00&\x00\x00\x00\x02\x00\x02\x00\x00\x00\x00\x00\x05\x01\x00\x00\x00\x00\x00\x00\x04INIT\x00\x00\x00\x04get\x00\x00\x00\x00\x00\x00\x00\x00\x0cNameService\x00|
 ports 50007,50107,50207,50307,50407,50507,50607,50707,50807,50907,51007,51107,51207,51307,51407,51507,51607,51707,51807,51907,52007,52107,52207,52307,52407,52507,52607,52707,52807,52907,53007,53107,53207,53307,53407,53507,53607,53707,53807,53907,54007,54107,54207,54307,54407,54507,54607,54707,54807,54907,55007,55107,55207,55307,55407,55507,55607,55707,55807,55907,56007,56107,56207,56307,56407,56507,56607,56707,56807,56907,57007,57107,57207,57307,57407,57507,57607,57707,57807,57907,58007,58107,58207,58307,58407,58507,58607,58707,58807,58907,59007,59107,59207,59307,59407,59507,59607,59707,59807
 rarity 9
-match sapp4iiop m|IDL:omg.org/SendingContext/CodeBase:1.0.*?(\d+\.\d+\.\d+\.\d+)| i/Internel IP $1/
+match sapp4iiop m|IDL:omg.org/SendingContext/CodeBase:1.0.*?(\d+\.\d+\.\d+\.\d+)| p/SAP P4 over IIOP/ i/Potential internal IP $1/
 
 ##############################NEXT PROBE##############################
 Probe TCP POSXPRESSDATA q|lalala|
@@ -367,15 +368,6 @@ Probe TCP MSRDP q|\x03\x00\x00\x0b\x06\xe0\x00\x00\x00\x00\x00\x00|
 ports 3389
 rarity 9
 match ms-wbt-server m#^\x03\x00\x00(\x0b|\x17|\x11)# p/Microsoft Terminal Service/
-
-
-##############################NEXT PROBE##############################
-# FIXME: do version grabbing when COMMAND=version is honored.
-Probe TCP ORACLETNS q|\x00Z\x00\x00\x01\x00\x00\x00\x016\x01,\x00\x00\x08\x00\x7f\xff\x7f\x08\x00\x00\x00\x01\x00 \x00:\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x004\xe6\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00(CONNECT_DATA=(COMMAND=version))|
-ports 1520-1599
-rarity 9
-match oracledb m|DESCRIPTION.*ERROR| p/Oracle TNS Listener/
-match oracledb m|TNSLSNR for (.*?): Version ([\d.]+)| p/Oracle TNS Listener/ v/$2/ o/$1/
 
 
 ############################################
