@@ -337,7 +337,7 @@ https://erpscan.com/press-center/blog/sap-services-detection-via-nmap-probes/
 
 ## Authors
  
- Name | Mail  | Involvment
+ Name | Mail  | Involvement
 ------|-------|------------
 Mathieu Geli | <m.geli@erpscan.com>  | Main author/maintainer of those files
 Michael Medvedev | <m.medvedev@erpscan.com> | Second author
