@@ -21,7 +21,7 @@ match sapstartservice m|Location: /sapmc/sapmc\.html\r\nServer: gSOAP| p/SAP Man
 match saphostcontrol m|HOST=(\S+)\r\nServer: gSOAP| p/SAPHostControl/ h/$1/
 
 ##############################NEXT PROBE##############################
-Probe TCP SAPGW q|\x00\x00\x00@\x02\x03\xac\x10\x00w\x00\x00\x00\x00startrfc\x00\x001100\x00\x00\x00\x00\x00\x00default_startrfc        \x06\xcb\xff\xff\x00\x00\x00\x00\x00\x00|
+Probe TCP SAPGW q|\x00\x00\x00@\x02\t\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00|
 ports 3300-3399,4800-4899
 rarity 9
 match sapgateway m|\x00\x00\x00\x40\x02\x03\xac\x10\x00\x77\x00\x00\x00\x00\x73\x74| p/SAP Gateway/
@@ -119,7 +119,7 @@ match sapjms m|Packet with i| p/SAP Java Message Service/
 Probe TCP SAPJAVAENQ q|\x00\x00\x00\x56\xab\xcd\xe1\x23\x00\x00\x00\x00\x00\x00\x00\x56\x00\x00\x00\x56\x06\x01\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x01\x00\x04\x00\x00\x00\x00\x00\x03sap730_4016_1\x00\x00\x00\x00\x02\x00\x00\x00\x3b\x00\x00\x00\x05\x00\x00\x00\x03\x00\x00\x00\x06\x00\x00\x00\x04\x00\x00\x00\x01|
 ports 3200-3299
 rarity 9
-match sapjavaenq m|\W+(\w+)_IOThread_| p/SAP Enqueue Server/ h/$1/ 
+match sapjavaenq m|\W+(\w+)_IOThread_| p/SAP Enqueue Server/ h/$1/
 
 ##############################NEXT PROBE##############################
 # P_NIPING
@@ -144,7 +144,7 @@ rarity 9
 match sapigs m|SAP Internet Graphics Server| p/SAP Internet Graphics Server/
 
 ##############################NEXT PROBE##############################
-# TREX (old) packet version 
+# TREX (old) packet version
 Probe TCP SAPTREXGEN q|I\x00\x08\x10\x18\x0b\x00\x00\x00\x01\x02\x05%\x00\x00\x00\x00__INT__PINGD\x00\x00\x00\x88\x00\x00\x00\x00\x07\xff\xff\xff\xff\xff\xff\xff\xff\x17|
 ports 30001,30101,30201,30301,30401,30501,30601,30701,30801,30901,31001,31101,31201,31301,31401,31501,31601,31701,31801,31901,32001,32101,32201,32301,32401,32501,32601,32701,32801,32901,33001,33101,33201,33301,33401,33501,33601,33701,33801,33901,34001,34101,34201,34301,34401,34501,34601,34701,34801,34901,35001,35101,35201,35301,35401,35501,35601,35701,35801,35901,36001,36101,36201,36301,36401,36501,36601,36701,36801,36901,37001,37101,37201,37301,37401,37501,37601,37701,37801,37901,38001,38101,38201,38301,38401,38501,38601,38701,38801,38901,39001,39101,39201,39301,39401,39501,39601,39701,39801,39901
 rarity 9
