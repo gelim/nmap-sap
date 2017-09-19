@@ -130,7 +130,7 @@ Full documentation of this file format can be found at
 
 ## How to generate and test probes
 
-So now, we need a way to know which packets needto be sent and what
+So now, we need a way to know which packets need to be sent and what
 specific piece of information inside an answer can allow us to
 identify with a good assurance what protocol is being used and from
 that determine what is the service using this protocol. In order to
@@ -171,7 +171,7 @@ for version, and 'h' for hostname).
 ## How to handle scan port range
 
 Usually with nmap, if we do not specify -p option it will scan the
-1000 most used port (from internet statistics). Unfortunately, many
+1000 most used port (from Internet statistics). Unfortunately, many
 SAP ports will be missed by doing so. Therefore, we need to scan all
 65535 ports at a big scan time cost or we look a bit closer at how to
 generate these SAP ports. For efficiency, we decide to choose the
@@ -219,7 +219,7 @@ $ nmap -p $(sap_ports.py) $TARGETS
 ```
 
 The main idea of `sap_ports.py` is to use a statically defined
-dictionary with information gathered from SAP online documentation to
+dictionary with information gathered from SAP on-line documentation to
 generate the list of ports with possibility to generate a subset of
 the ports depending on several criteria.
 
@@ -246,7 +246,7 @@ Not shown: 6563 closed ports
 PORT      STATE SERVICE             VERSION
 22/tcp    open  ssh                 OpenSSH 6.2 (protocol 2.0)
 111/tcp   open  rpcbind             2-4 (RPC #100000)
-1128/tcp  open  sapstartservice     SAP Maganement Console (SID SAP, NR 99)
+1128/tcp  open  sapstartservice     SAP Management Console (SID SAP, NR 99)
 3201/tcp  open  sapjavaenq          SAP Enqueue Server
 3299/tcp  open  saprouter           SAProuter 40.4
 3301/tcp  open  sapgateway          SAP Gateway
@@ -268,12 +268,12 @@ PORT      STATE SERVICE             VERSION
 50001/tcp open  ssl/sapjavaweb      SAP NetWeaver Application Server (Kernel version 7.45, Java version 7.50)
 50004/tcp open  sapjavap4           SAP JAVA P4 (Potential internal IP 172.16.30.29)
 50007/tcp open  sapp4iiop           (Internel IP 172.16.30.29)
-50013/tcp open  sapstartservice     SAP Maganement Console (SID J45, NR 00)
-50014/tcp open  ssl/sapstartservice SAP Maganement Console (SID J45, NR 00)
+50013/tcp open  sapstartservice     SAP Management Console (SID J45, NR 00)
+50014/tcp open  ssl/sapstartservice SAP Management Console (SID J45, NR 00)
 50020/tcp open  sapjoin             SAP Java Cluster Join Service
-50113/tcp open  sapstartservice     SAP Maganement Console (SID J45, NR 01)
-50114/tcp open  ssl/sapstartservice SAP Maganement Console (SID J45, NR 01)
-50213/tcp open  sapstartservice     SAP Maganement Console (SID TRX, NR 02)
+50113/tcp open  sapstartservice     SAP Management Console (SID J45, NR 01)
+50114/tcp open  ssl/sapstartservice SAP Management Console (SID J45, NR 01)
+50213/tcp open  sapstartservice     SAP Management Console (SID TRX, NR 02)
 Service Info: Host: java745;
 ```
 
@@ -336,9 +336,10 @@ https://erpscan.com/press-center/blog/sap-services-detection-via-nmap-probes/
 
 
 ## Authors
- 
- Name | Mail  | Involvment
+ -a
+ Name | Mail  | Involvement
 ------|-------|------------
 Mathieu Geli | <m.geli@erpscan.com>  | Main author/maintainer of those files
 Michael Medvedev | <m.medvedev@erpscan.com> | Second author
 Martin Gallo | <mgallo@coresecurity.com>  | Initial support on Diag/RFC/MS/Enqueue protocols
+Joris van de Vis | <jvdvis@erp-sec.com>  | Improvements over RFC probes
