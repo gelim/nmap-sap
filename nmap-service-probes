@@ -1,6 +1,7 @@
 # Authors: Mathieu Geli     <m.geli@erpscan.com>
 #          Michael Medvedev <m.medvedev@erpscan.com>
-#          Martin Gallo     <m.gallo@coresecurity.com>
+#          Martin Gallo     <mgallo@coresecurity.com>
+#          Joris van de Vis <jvdvis@erp-sec.com>
 
 Probe TCP NULL q||
 totalwaitms 6000
@@ -19,6 +20,12 @@ rarity 9
 match sapstartservice m|SID=(\w+)&NR=(\d+)&HOST=(\S+)\r\nServer: gSOAP| p/SAP Management Console/ i/SID $1, NR $2/ h/$3/
 match sapstartservice m|Location: /sapmc/sapmc\.html\r\nServer: gSOAP| p/SAP Management Console/
 match saphostcontrol m|HOST=(\S+)\r\nServer: gSOAP| p/SAPHostControl/ h/$1/
+
+##############################NEXT PROBE##############################
+Probe TCP SAPGW q|\x00\x00\x00@\x02\t\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00|
+ports 3300-3399,4800-4899
+rarity 9
+match sapgateway m|\x00\x00\x00\x00| p/SAP Gateway/ i/Monitoring mode disabled/
 
 ##############################NEXT PROBE##############################
 Probe TCP SAPGW q|\x00\x00\x00@\x02\x03\xac\x10\x00w\x00\x00\x00\x00startrfc\x00\x001100\x00\x00\x00\x00\x00\x00default_startrfc        \x06\xcb\xff\xff\x00\x00\x00\x00\x00\x00|
