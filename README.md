@@ -339,7 +339,7 @@ https://erpscan.com/press-center/blog/sap-services-detection-via-nmap-probes/
  
  Name | Mail  | Involvement
 ------|-------|------------
-Mathieu Geli | <m.geli@erpscan.com>  | Main author/maintainer of those files
+Mathieu Geli | <mathieu.geli@gmail.com>  | Main author/maintainer of those files
 Michael Medvedev | <m.medvedev@erpscan.com> | Second author
 Martin Gallo | <mgallo@coresecurity.com>  | Initial support on Diag/RFC/MS/Enqueue protocols
 Joris van de Vis | <jvdvis@erp-sec.com>  | Improvements over RFC probes
