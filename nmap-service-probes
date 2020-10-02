@@ -53,8 +53,19 @@ match sapms m|MESSAGE| p/SAP Message Server/
 Probe TCP SAPP4 q|v1\x18#p#4None:127.0.0.1:33170|
 ports 50004,50104,50204,50304,50404,50504,50604,50704,50804,50904,51004,51104,51204,51304,51404,51504,51604,51704,51804,51904,52004,52104,52204,52304,52404,52504,52604,52704,52804,52904,53004,53104,53204,53304,53404,53504,53604,53704,53804,53904,54004,54104,54204,54304,54404,54504,54604,54704,54804,54904,55004,55104,55204,55304,55404,55504,55604,55704,55804,55904,56004,56104,56204,56304,56404,56504,56604,56704,56804,56904,57004,57104,57204,57304,57404,57504,57604,57704,57804,57904,58004,58104,58204,58304,58404,58504,58604,58704,58804,58904,59004,59104,59204,59304,59404,59504,59604,59704,59804,59904
 rarity 9
+match sapjavap4s m|v1.#p#4ssl:(\d+\.\d+\.\d+\.\d+)| p/SAP JAVA P4S/ i/Potential internal IP $1/
 match sapjavap4 m|v1.*:(\d+\.\d+\.\d+\.\d+)| p/SAP JAVA P4/ i/Potential internal IP $1/
+match sapjavap4s m|v1.#p#4ssl| p/SAP JAVA P4S/
 match sapjavap4 m|v1| p/SAP JAVA P4/
+
+##############################NEXT PROBE##############################
+Probe TCP SAPP4AGENT q|v1\x1d#p#4None:192.168.123.123:1234|
+ports 9000-65535
+rarity 9
+match sapagentp4s m|v1.#p#4ssl:(\d+\.\d+\.\d+\.\d+)| p/SAP JAVA P4S SMDAGENT/ i/Potential internal IP $1/
+match sapagentp4 m|v1.*:(\d+\.\d+\.\d+\.\d+)| p/SAP JAVA P4 SMDAGENT/ i/Potential internal IP $1/
+match sapagentp4s m|v1.#p#4ssl| p/SAP JAVA P4S SMDAGENT/
+match sapagentp4 m|v1| p/SAP JAVA P4 SMDAGENT/
 
 ##############################NEXT PROBE##############################
 Probe TCP WEB q|GET / HTTP/1.0\r\n\r\n|
@@ -90,6 +101,12 @@ rarity 9
 match hanatomcat m|WWW-Authenticate: Basic realm="([\w ]+)| p/SAP HANA XSA/ i/basic "$1"/
 match hanatomcat m|WWW-Authenticate: Bearer realm="([\w ]+)| p/SAP HANA XSA/ i/bearer $1/
 match hanasinopia m|X-Powered-By: ([\w+ ]+)| p/SAP HANA XSA $1/
+
+##############################NEXT PROBE##############################
+Probe TCP AGENTSOLMAN q|\x00\x00\x00 AAAAAAAAAAAAAAAA\x0e\x00\x00\x00ABCD\x05\x00\x00\x00\x00\x00\x00\x00|
+ports 64900-64999
+rarity 9
+match solmanagent m|\x00\x00\x00 AAAAAAAAAAAAAAAA\x0e\x00\x00\x00ABCD\x05\x00\x00\x00\x0e\x00\x00\x00| p/SAP Solman Agent/
 
 ##############################NEXT PROBE##############################
 Probe TCP HANAXSC q|GET /v2/info HTTP/1.0\r\nHost: 127.0.0.1:30030\r\n\r\n|
