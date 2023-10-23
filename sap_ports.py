@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Generate a list of SAP TCP ports
 #
@@ -10,9 +10,9 @@
 #
 # -- gelim
 
-from pprint import pprint
+#from pprint import pprint
 import argparse
-import sys
+#import sys
 import re
 
 help_desc='''
@@ -177,7 +177,7 @@ def expand_ports(port_rule, maxi=100):
 
     if len(port_list) > 1:
         temp_list = list()
-        for i in xrange(0, maxi):
+        for i in range(0, maxi):
             port = ''.join(port_list)
             temp_list.append(port.replace('NN', '%.2d' % i))
         return temp_list
@@ -188,12 +188,12 @@ def generate_ports(p, maxi):
     merged_list = list()
     for e in p:
         merged_list += expand_ports(e, maxi)
-    print ','.join(set(merged_list))
+    print(','.join(set(merged_list)))
 
 def print_ports(flt=None, ssl=False):
     pl = list()
-    for ass in ports.keys():
-        for proto in ports[ass].keys():
+    for ass in list(ports.keys()):
+        for proto in list(ports[ass].keys()):
             if ssl:
                 if 'ssl' in proto.lower() or 'https' in proto.lower() or 'tls' in proto.lower():
                     continue
@@ -203,9 +203,9 @@ def print_ports(flt=None, ssl=False):
             else:
                 k = pl
             if flt:
-                if flt.lower() in proto.lower(): print ("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k
+                if flt.lower() in proto.lower(): print(("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k)
             else:
-                print ("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k
+                print(("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k)
 
 def list_add_or_merge(port_list, elem):
     if isinstance(elem, list):
@@ -231,8 +231,8 @@ def get_ports_by_cat(asname, ssl=False):
 # rendering
 def get_ports_by_svc(svc, ssl=False):
     port_list = list()
-    for ass in ports.keys():
-        for proto in ports[ass].keys():
+    for ass in list(ports.keys()):
+        for proto in list(ports[ass].keys()):
             if ssl:
                 if 'ssl' in proto.lower() or 'https' in proto.lower():
                     continue
@@ -256,7 +256,7 @@ if __name__ == '__main__':
 
     ports_active = list()
     if args.instance > 100:
-        print "Instance number can be maximum 100."
+        print("Instance number can be maximum 100.")
         exit(0)
 
     if args.verbose:
@@ -279,7 +279,7 @@ if __name__ == '__main__':
     
     # select all ports if no filtering options are set
     if not args.java and not args.abap and not args.hana and not args.pos and not len(args.arguments):
-        for k in ports.keys():
+        for k in list(ports.keys()):
             ports_active += get_ports_by_cat(k)
     else:
         # always add the Admin services if we use the filtering options
