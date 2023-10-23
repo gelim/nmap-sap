@@ -10,9 +10,7 @@
 #
 # -- gelim
 
-#from pprint import pprint
 import argparse
-#import sys
 import re
 
 help_desc='''
