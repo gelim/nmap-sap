@@ -177,7 +177,7 @@ def expand_ports(port_rule, maxi=100):
 
     if len(port_list) > 1:
         temp_list = list()
-        for i in xrange(0, maxi):
+        for i in range(0, maxi):
             port = ''.join(port_list)
             temp_list.append(port.replace('NN', '%.2d' % i))
         return temp_list
@@ -188,7 +188,7 @@ def generate_ports(p, maxi):
     merged_list = list()
     for e in p:
         merged_list += expand_ports(e, maxi)
-    print ','.join(set(merged_list))
+    print(','.join(set(merged_list)))
 
 def print_ports(flt=None, ssl=False):
     pl = list()
@@ -203,9 +203,9 @@ def print_ports(flt=None, ssl=False):
             else:
                 k = pl
             if flt:
-                if flt.lower() in proto.lower(): print ("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k
+                if flt.lower() in proto.lower(): print( ("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k)
             else:
-                print ("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k
+                print(("%s" % ass).ljust(20) +  (" | %s" % proto).ljust(30) + " | %s" % k)
 
 def list_add_or_merge(port_list, elem):
     if isinstance(elem, list):
@@ -256,7 +256,7 @@ if __name__ == '__main__':
 
     ports_active = list()
     if args.instance > 100:
-        print "Instance number can be maximum 100."
+        print("Instance number can be maximum 100.")
         exit(0)
 
     if args.verbose:
